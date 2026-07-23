@@ -1,29 +1,27 @@
 class Node{
     int data;
     Node next;
-    Node prev;
     Node(int data){
         this.data = data;
         this.next = null;
-        this.prev = null;
     }
 }
 
-class DoublyLinkedList{
+class CircularLinkedList{
     Node head;
     
     void add(int data){
         Node newNode = new Node(data);
         if(head == null){
             head = newNode;
+            newNode.next = head;
            return;
         }
         Node temp = head;
-        while(temp.next != null)
+        while(temp.next != head)
             temp = temp.next;
-        newNode.prev = temp;
         temp.next = newNode;
-        newNode.next = null;
+        newNode.next = head;
     }
     
     void print(){
@@ -32,17 +30,18 @@ class DoublyLinkedList{
             return;
         }
         Node temp = head;
-        while(temp != null){
+        
+        do {
             System.out.print(temp.data + " -> ");
             temp = temp.next;
-        }
-        System.out.print("null");
+        } while (temp != head);
+
     }
 }
 
 class Main {
     public static void main(String[] args) {
-        DoublyLinkedList listobj = new DoublyLinkedList();
+        CircularLinkedList listobj = new CircularLinkedList();
         listobj.add(4);
         listobj.add(14);
         listobj.add(44);
