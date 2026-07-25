@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: Junit.TimedTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.918 s <<< FAILURE! -- in Junit.TimedTest
+Junit.TimedTest.testUnrealisticTimeoutFail -- Time elapsed: 0.221 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: execution exceeded timeout of 50 ms by 52 ms
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTimeout.assertTimeout(AssertTimeout.java:81)
+	at org.junit.jupiter.api.AssertTimeout.assertTimeout(AssertTimeout.java:57)
+	at org.junit.jupiter.api.AssertTimeout.assertTimeout(AssertTimeout.java:39)
+	at org.junit.jupiter.api.AssertTimeout.assertTimeout(AssertTimeout.java:35)
+	at org.junit.jupiter.api.Assertions.assertTimeout(Assertions.java:3294)
+	at Junit.TimedTest.testUnrealisticTimeoutFail(timedTest.java:29)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+
