@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- Dependency Check ensures accountHolder must be set -->
+   <bean id="bankAccount" class="com.bank.BankAccount" dependency-check="all">
+       <property name="accountId" value="101"/>
+       <property name="accountHolder" value="Prasunamba"/>
+   </bean>
+   <bean id="customer" class="com.bank.Customer">
+        <property name="name" value="Prasunamba"/>
+            <property name="address">
+                <!-- Inner bean -->
+                <bean class="com.bank.Address">
+                    <property name="city" value="Bengaluru"/>
+                </bean>
+        </property>
+    </bean>
+
+</beans>
