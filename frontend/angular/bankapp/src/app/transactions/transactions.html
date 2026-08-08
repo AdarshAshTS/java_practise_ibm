@@ -1,0 +1,42 @@
+<div class="transactions-shell">
+  <section class="hero-card">
+    <div>
+      <p class="eyebrow">Activity overview</p>
+      <h1>Transaction history</h1>
+      <p>Review recent account statements in a clear, professional view.</p>
+    </div>
+    <div class="summary-pill">
+      <span>{{ transactions.length }}</span>
+      <small>recent entries</small>
+    </div>
+  </section>
+
+  <div class="panel table-panel">
+    <div class="panel-head">
+      <div>
+        <p class="eyebrow">Timeline</p>
+        <h3>Recent activity</h3>
+      </div>
+      <span class="pill">Live data</span>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (transaction of transactions; track transaction.accountNumber) {
+          <tr>
+            <td>{{ transaction.accountNumber }}</td>
+            <td>{{ transaction.amount | currency: 'INR' }}</td>
+            <td><span class="status">Completed</span></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

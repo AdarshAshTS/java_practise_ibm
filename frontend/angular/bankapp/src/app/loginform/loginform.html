@@ -1,0 +1,43 @@
+<div class="auth-card">
+  <section class="auth-banner">
+    <p class="eyebrow">Secure sign-in</p>
+    <h1>Welcome back to your digital vault.</h1>
+    <p>Access your account, review transactions, and send funds in seconds.</p>
+    <ul>
+      <li>Instant account access</li>
+      <li>Protected transfers</li>
+      <li>Real-time activity insights</li>
+    </ul>
+  </section>
+
+  <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <h2>Log in</h2>
+
+    <label>Username</label>
+    <input type="text" formControlName="username" autocomplete="username">
+    @if (loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')) {
+      <p class="error">Username is required.</p>
+    }
+
+    <label>Account Number</label>
+    <input type="text" formControlName="accountNumber" autocomplete="off">
+    @if (loginForm.get('accountNumber')?.touched && loginForm.get('accountNumber')?.hasError('required')) {
+      <p class="error">Account number is required.</p>
+    }
+    @if (loginForm.get('accountNumber')?.touched && loginForm.get('accountNumber')?.hasError('pattern')) {
+      <p class="error">Account number must be exactly 12 digits.</p>
+    }
+
+    <label>Password</label>
+    <input type="password" formControlName="password" autocomplete="current-password">
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')) {
+      <p class="error">Password is required.</p>
+    }
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.hasError('pattern')) {
+      <p class="error">Password must be exactly 6 digits.</p>
+    }
+
+    <button type="submit" [disabled]="loginForm.invalid">Sign in</button>
+    <p class="helper-text">Demo credentials: adarsh / 123456 / 123456789012</p>
+  </form>
+</div>

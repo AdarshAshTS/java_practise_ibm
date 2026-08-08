@@ -1,0 +1,29 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">N</div>
+      <div>
+        <h2>Northstar Bank</h2>
+        <p>Modern digital banking</p>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+
+      @if (isLoggedIn) {
+        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/transaction" routerLinkActive="active">Transactions</a>
+      }
+    </nav>
+
+    <div class="sidebar-card">
+      <p>Secure transfers with instant visibility.</p>
+      <span>24/7 support available</span>
+    </div>
+  </aside>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

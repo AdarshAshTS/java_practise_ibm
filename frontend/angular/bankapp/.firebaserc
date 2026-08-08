@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "banking-app-46a43"
+  },
+  "targets": {
+    "banking-app-46a43": {
+      "hosting": {
+        "banking-app-46a43": [
+          "banking-app-46a43"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

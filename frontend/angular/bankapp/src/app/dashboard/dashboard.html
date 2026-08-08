@@ -1,0 +1,50 @@
+<div class="dashboard-shell">
+  <section class="hero-card">
+    <div>
+      <p class="eyebrow">Personal banking</p>
+      <h1>Hello, {{ userName }}</h1>
+      <p>Move money securely and keep your account activity in view.</p>
+    </div>
+    <div class="balance-card">
+      <span>Primary account</span>
+      <strong>{{ accountNumberMasked | maskAccount }}</strong>
+      <small>Protected account</small>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="panel transfer-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">Quick transfer</p>
+          <h3>Send money</h3>
+        </div>
+        <span class="pill">Min ₹100</span>
+      </div>
+
+      <label>Recipient account</label>
+      <input type="text" placeholder="Enter account number" [(ngModel)]="accountNumber">
+
+      <label>Amount</label>
+      <input type="number" placeholder="Enter amount" [(ngModel)]="amount" min="100">
+
+      @if (errorMessage) {
+        <p class="error">{{ errorMessage }}</p>
+      }
+
+      <button (click)="transfer()" [disabled]="!accountNumber.trim() || amount === null || amount < 100">
+        Make transfer
+      </button>
+    </div>
+
+    <div class="panel insights-panel">
+      <p class="eyebrow">Why people choose us</p>
+      <h3>Fast, transparent, reliable</h3>
+      <ul>
+        <li>Instant notifications after every transfer</li>
+        <li>Secure account handling and validation</li>
+        <li>Clear activity history in one place</li>
+      </ul>
+    </div>
+  </section>
+</div>
