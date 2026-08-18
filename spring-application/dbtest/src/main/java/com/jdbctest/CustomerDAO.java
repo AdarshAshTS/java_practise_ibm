@@ -1,6 +1,14 @@
 package com.jdbctest;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.cache.annotation.Cacheable;
 
 public class CustomerDAO {
 
@@ -13,40 +21,44 @@ public class CustomerDAO {
     public void setDriver(String driver) {
         this.driver = driver;
     }
+
     public void setUrl(String url) {
         this.url = url;
     }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    // fetch customer records
-    public void selectAllRows() throws ClassNotFoundException, SQLException {
-        System.out.println("Retrieving customer data..");
+    @Cacheable("customers")
+    public List<String> selectAllRows() throws ClassNotFoundException, SQLException {
 
-        // driver is loading
+        System.out.println("Fetching customer data from DATABASE...");
+
         Class.forName(driver);
 
-        // connection establishment is done here
-        Connection con = DriverManager.getConnection(url, userName, password);
+        List<String> customers = new ArrayList<>();
 
-        // Executing our query
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM CustomerDb.CustomerInfo");
+        try (Connection con = DriverManager.getConnection(url, userName, password);
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM customer")) {
 
-        while (rs.next()) {
-            int customerId = rs.getInt(1);
-            String customerName = rs.getString(2);
-            double customerFees = rs.getDouble(3);
-            String custAddress = rs.getString(4);
+            while (rs.next()) {
 
-            System.out.println(customerId + " " + customerName + " " + customerFees + " " + custAddress );
+                long id = rs.getLong("id");
+                String accountType = rs.getString("account_type");
+
+                customers.add(
+                    "ID: " + id +
+                    ", Account Type: " + accountType
+                );
+            }
         }
 
-        // Close connection
-        con.close();
+        return customers;
     }
 }
